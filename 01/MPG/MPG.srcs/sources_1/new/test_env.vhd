@@ -14,10 +14,9 @@ end test_env;
 architecture Behavioral of test_env is
 
 component MPG is
-    Port (
-        clk: in STD_LOGIC;
-        btn: in STD_LOGIC;
-        enable: out STD_LOGIC);
+    Port ( enable : out STD_LOGIC;
+       btn : in STD_LOGIC;
+       clk : in STD_LOGIC);
 end component;
 
 signal cnt: std_logic_vector (2 downto 0) := "000";
@@ -34,21 +33,21 @@ begin
 --cat <= (others => '0');
 
 
-mapMPG: MPG port map(clk,btn(0),en);
+conapMPG: MPG port map(en,btn(0),clk);
 dir <= sw(0);
 --counter
- process(clk)
-   begin
+process(clk)
+    begin
         if rising_edge(clk) then 
-           if en = '1' then
+        if en = '1' then
                if dir = '0' then
                    cnt <= cnt + 1;
                else
                    cnt <= cnt - 1;
                end if;
-           end if;
-       end if;
-   end process;
+            end if;
+        end if; 
+    end process;
 --end counter
 
 --dcd 3:8

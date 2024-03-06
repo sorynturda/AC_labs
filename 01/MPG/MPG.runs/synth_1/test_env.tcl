@@ -4,8 +4,6 @@
 
 set_msg_config -id {HDL 9-1061} -limit 100000
 set_msg_config -id {HDL 9-1654} -limit 100000
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -17,7 +15,10 @@ set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo /home/sorin/Desktop/AC_labs/01/MPG/MPG.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_vhdl -library xil_defaultlib /home/sorin/Desktop/AC_labs/01/MPG/MPG.srcs/sources_1/new/test_env.vhd
+read_vhdl -library xil_defaultlib {
+  /home/sorin/Desktop/AC_labs/01/MPG/MPG.srcs/sim_1/new/MPG.vhd
+  /home/sorin/Desktop/AC_labs/01/MPG/MPG.srcs/sources_1/new/test_env.vhd
+}
 foreach dcp [get_files -quiet -all *.dcp] {
   set_property used_in_implementation false $dcp
 }
