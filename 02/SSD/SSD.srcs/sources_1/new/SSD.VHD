@@ -29,15 +29,17 @@ component SSSD is
 end component;
 
 signal en : STD_LOGIC;
-signal cnt : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
+signal digits : STD_LOGIC_VECTOR(31 downto 0) := (others => '0');
 signal an_map : STD_LOGIC_VECTOR (7 downto 0);
 signal cat_map : STD_LOGIC_VECTOR (6 downto 0);
 signal dir : STD_LOGIC;
+signal cnt : STD_LOGIC_VECTOR(1 downto 0);
+
 begin
 
 maspg: MPG port map(en, btn(0),clk);
-hkdsadj: SSSD port map(clk,cnt,an,cat);
-dir <= sw(0);
+hkdsadj: SSSD port map(clk,digits,an,cat);
+dir <= sw(15);
 counter : process(clk, en)
 begin
     if rising_edge(clk) then
@@ -49,6 +51,17 @@ begin
             end if;
         end if;
     end if;
+end process;
+
+mux : process(cnt)
+begin
+    case cnt is
+        when "00" => digits <= (X"0000000" & sw(3 downto 0)) + (X"0000000" & sw(7 downto 4));
+        when "01" => digits <= (X"0000000" & sw(3 downto 0)) - (X"0000000" & sw(7 downto 4));
+        when "10" => digits <= X"0000" & "000000" & sw(7 downto 0) & "00";
+        when "11" => digits <= X"0000" & "0000000000" & sw(7 downto 2);
+        when others => digits <= (others => 'X');
+    end case;
 end process;
 
 --ssd : process(clk)
