@@ -64,6 +64,15 @@ begin
     end case;
 end process;
 
+process(digits)
+begin
+    if digits = X"00" then
+        led(8) <= '1';
+    else 
+        led(8) <= '0';
+    end if;
+end process;
+led(7 downto 0) <= sw(7 downto 0);
 --ssd : process(clk)
 --begin
 --    an <= an_map;
