@@ -28,25 +28,60 @@ component SSD is
            cat : out STD_LOGIC_VECTOR(6 downto 0));
 end component;
 
-type ROM is array (0 to 31) of std_logic_vector(31 downto 0);
-signal memorie : ROM := (
-    X"1278A",
-    X"9747F1",
-    others => X"696969"
-);
+component reg_file is
+    port (  clk : in std_logic;
+            ra1 : in std_logic_vector(4 downto 0);
+            ra2 : in std_logic_vector(4 downto 0);
+            wa : in std_logic_vector(4 downto 0);
+            wd : in std_logic_vector(31 downto 0);
+            regwr : in std_logic;
+            rd1 : out std_logic_vector(31 downto 0);
+            rd2 : out std_logic_vector(31 downto 0));
+end component;
 
-signal cnt : STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
-signal en : STD_LOGIC;
-signal semnal : STD_LOGIC_VECTOR(31 downto 0);
+component ram_wr_1st is
+    port (  clk : in std_logic;
+            we : in std_logic;
+            --en : in std_logic; -- opțional
+            addr : in std_logic_vector(5 downto 0);
+            di : in std_logic_vector(31 downto 0);
+            do : out std_logic_vector(31 downto 0));
+end component;
+
+--type ROM is array (0 to 31) of std_logic_vector(31 downto 0);
+--signal memorie : ROM := (
+--    X"1278A",
+--    X"9747F1",
+--    others => X"696969"
+--);
+
+signal cnt : STD_LOGIC_VECTOR(5 downto 0) := (others => '0');
+signal rst, en, regwr, we : STD_LOGIC;
+signal digits, rd1, rd2, tmp : STD_LOGIC_VECTOR(31 downto 0);
 begin
-semnal <= memorie(conv_integer(cnt));
-buton: MPG port map(en,btn(0),clk);
-afisor: SSD port map(clk, semnal, an, cat);
-counter : process(clk)
-begin
-    if rising_edge(clk) and en = '1' then
-        cnt <= cnt + 1;
-    end if;
-end process;
+
+tmp <= digits(31 downto 2) & "00";
+--semnal <= memorie(conv_integer(cnt));
+
+buton2: MPG port map(rst,btn(2),clk);
+buton0: MPG port map(en,btn(0),clk);
+buton1regwr: MPG port map(regwr, btn(1),clk);
+buton2we : MPG port map(we, btn(1),clk);
+afisor: SSD port map(clk, digits, an, cat);
+--regfile: reg_file port map(clk, cnt, cnt, cnt, digits, regwr, rd1, rd2);
+ramwr: ram_wr_1st port map(clk, we, cnt, tmp, digits);
+
+digits <= rd1 + rd2;
+    counter : process(clk)
+    begin
+        if rst = '1' then 
+            cnt <= "000000";
+        else 
+            if rising_edge(clk) and en = '1' then
+                cnt <= cnt + 1;
+            end if;
+         end if;
+    end process;
+
 
 end Behavioral;

@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1710323567">
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1711036727">
   <File Type="VDS-TIMING-PB" Name="test_env_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="test_env_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="test_env.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="test_env_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="test_env_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="test_env_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="test_env.vds"/>
   <File Type="PA-TCL" Name="test_env.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="test_env_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="test_env_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="test_env_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="test_env.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/ram_wr_1st.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../SSD.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -24,6 +30,13 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/test_env.vhd">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/reg_file.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -47,9 +60,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2016"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

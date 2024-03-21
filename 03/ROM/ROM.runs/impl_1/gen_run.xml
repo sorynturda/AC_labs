@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1710323567">
+<GenRun Id="impl_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1711036727">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="test_env.drc"/>
   <File Type="BG-BGN" Name="test_env.bgn"/>
@@ -23,45 +23,51 @@
   <File Type="ROUTE-TIMINGSUMMARY" Name="test_env_timing_summary_routed.rpt"/>
   <File Type="ROUTE-STATUS-PB" Name="test_env_route_status.pb"/>
   <File Type="ROUTE-STATUS" Name="test_env_route_status.rpt"/>
-  <File Type="PLACE-CTRL" Name="test_env_control_sets_placed.rpt"/>
-  <File Type="PLACE-IO" Name="test_env_io_placed.rpt"/>
-  <File Type="PWROPT-TIMING" Name="test_env_timing_summary_pwropted.rpt"/>
-  <File Type="PLACE-DCP" Name="test_env_placed.dcp"/>
-  <File Type="PLACE-UTIL-PB" Name="test_env_utilization_placed.pb"/>
+  <File Type="ROUTE-PWR-RPX" Name="test_env_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="test_env_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="test_env_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="test_env_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="test_env_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="test_env_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="test_env_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="test_env_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="test_env_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="test_env_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="test_env_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="test_env_routed_error.dcp"/>
   <File Type="PHYSOPT-TIMING" Name="test_env_timing_summary_physopted.rpt"/>
-  <File Type="PWROPT-DRC" Name="test_env_drc_pwropted.rpt"/>
-  <File Type="PWROPT-DCP" Name="test_env_pwropt.dcp"/>
-  <File Type="PLACE-UTIL" Name="test_env_utilization_placed.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="test_env_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="test_env_physopt.dcp"/>
   <File Type="POSTPLACE-PWROPT-TIMING" Name="test_env_timing_summary_postplace_pwropted.rpt"/>
-  <File Type="OPT-TIMING" Name="test_env_timing_summary_opted.rpt"/>
-  <File Type="OPT-HWDEF" Name="test_env.hwdef"/>
-  <File Type="PLACE-CLK" Name="test_env_clock_utilization_placed.rpt"/>
   <File Type="RDI-RDI" Name="test_env.vdi"/>
   <File Type="PLACE-TIMING" Name="test_env_timing_summary_placed.rpt"/>
-  <File Type="INIT-TIMING" Name="test_env_timing_summary_init.rpt"/>
-  <File Type="OPT-DRC" Name="test_env_drc_opted.rpt"/>
-  <File Type="OPT-DCP" Name="test_env_opt.dcp"/>
-  <File Type="OPT-METHODOLOGY-DRC" Name="test_env_methodology_drc_opted.rpt"/>
   <File Type="PLACE-PRE-SIMILARITY" Name="test_env_incremental_reuse_pre_placed.rpt"/>
   <File Type="PLACE-SIMILARITY" Name="test_env_incremental_reuse_placed.rpt"/>
-  <File Type="PA-TCL" Name="test_env.tcl"/>
+  <File Type="PLACE-CTRL" Name="test_env_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="test_env_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="test_env_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="test_env_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="test_env_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="test_env_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="test_env_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="test_env_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="test_env_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="test_env_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="test_env.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="test_env_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="test_env_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="test_env_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="test_env_timing_summary_init.rpt"/>
   <File Type="POSTPLACE-PWROPT-DCP" Name="test_env_postplace_pwropt.dcp"/>
-  <File Type="PHYSOPT-DCP" Name="test_env_physopt.dcp"/>
-  <File Type="PHYSOPT-DRC" Name="test_env_drc_physopted.rpt"/>
-  <File Type="ROUTE-ERROR-DCP" Name="test_env_routed_error.dcp"/>
-  <File Type="ROUTE-DCP" Name="test_env_routed.dcp"/>
-  <File Type="ROUTE-BLACKBOX-DCP" Name="test_env_routed_bb.dcp"/>
-  <File Type="ROUTE-DRC" Name="test_env_drc_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC" Name="test_env_methodology_drc_routed.rpt"/>
-  <File Type="ROUTE-DRC-PB" Name="test_env_drc_routed.pb"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="test_env_methodology_drc_routed.pb"/>
-  <File Type="ROUTE-DRC-RPX" Name="test_env_drc_routed.rpx"/>
-  <File Type="ROUTE-PWR" Name="test_env_power_routed.rpt"/>
-  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="test_env_methodology_drc_routed.rpx"/>
-  <File Type="ROUTE-PWR-SUM" Name="test_env_power_summary_routed.pb"/>
-  <File Type="ROUTE-PWR-RPX" Name="test_env_power_routed.rpx"/>
+  <File Type="PA-TCL" Name="test_env.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/ram_wr_1st.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PPRDIR/../../SSD.vhd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -76,6 +82,13 @@
     </File>
     <File Path="$PSRCDIR/sources_1/new/test_env.vhd">
       <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/reg_file.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
@@ -99,9 +112,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016">
-      <Desc>Default settings for Implementation.</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>

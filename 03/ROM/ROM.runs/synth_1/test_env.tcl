@@ -16,6 +16,7 @@ set_property target_language Verilog [current_project]
 set_property ip_output_repo /home/sorin/Desktop/AC_labs/03/ROM/ROM.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library xil_defaultlib {
+  /home/sorin/Desktop/AC_labs/03/ROM/ROM.srcs/sources_1/new/ram_wr_1st.vhd
   /home/sorin/Desktop/AC_labs/SSD.vhd
   /home/sorin/Desktop/AC_labs/MPG.vhd
   /home/sorin/Desktop/AC_labs/03/ROM/ROM.srcs/sources_1/new/test_env.vhd
