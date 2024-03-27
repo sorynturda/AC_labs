@@ -1,0 +1,1 @@
+Load Word, ORI, XOR, Jump Register
