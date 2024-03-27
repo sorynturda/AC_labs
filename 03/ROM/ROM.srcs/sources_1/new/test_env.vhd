@@ -55,7 +55,7 @@ end component;
 --    others => X"696969"
 --);
 
-signal cnt : STD_LOGIC_VECTOR(5 downto 0) := (others => '0');
+signal cnt : STD_LOGIC_VECTOR(5 downto 0) := (others => '0'); --regfile are 5 
 signal rst, en, regwr, we : STD_LOGIC;
 signal digits, rd1, rd2, tmp : STD_LOGIC_VECTOR(31 downto 0);
 begin
@@ -83,5 +83,10 @@ digits <= rd1 + rd2;
          end if;
     end process;
 
+led(0) <= btn(0);
+led(1) <= btn(1);
+led(2) <= btn(2);
+led(3) <= btn(3);
+led(4) <= btn(4);
 
 end Behavioral;

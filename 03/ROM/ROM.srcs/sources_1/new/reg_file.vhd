@@ -18,6 +18,8 @@ architecture Behavioral of reg_file is
 
 type reg_array is array(0 to 31) of std_logic_vector(31 downto 0);
 signal reg_file : reg_array:= (
+    X"00000001",
+    X"00000003",
     others => X"00000000");
 begin
 
@@ -32,5 +34,5 @@ begin
     end process;
     rd1 <= reg_file(conv_integer(ra1));
     rd2 <= reg_file(conv_integer(ra2));
-    
+
 end Behavioral;

@@ -15,6 +15,8 @@ architecture Behavioral of ram_wr_1st is
 
 type ram_type is array (0 to 63) of std_logic_vector(31 downto 0);
 signal ram : ram_type := (
+    X"00000001",
+    X"00000002",
     others => X"00000000");
 begin
 
