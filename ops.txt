@@ -1,1 +1,1 @@
-Load Word, ORI, XOR, Jump Register
+Set on less than, ORI, XOR, Branch on not equal
