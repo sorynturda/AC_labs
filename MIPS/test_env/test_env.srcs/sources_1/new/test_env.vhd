@@ -14,13 +14,29 @@ end test_env;
 
 architecture Behavioral of test_env is
 
-component IFetch is
-    Port ( address : in STD_LOGIC_VECTOR (4 downto 0);
-           instrucion : out STD_LOGIC_VECTOR (31 downto 0));
+component MPG is
+    Port ( enable : out STD_LOGIC;
+           btn : in STD_LOGIC;
+           clk : in STD_LOGIC);
 end component;
 
 
-begin
+component IFetch is
+    Port( 
+        clk : in STD_LOGIC;
+        jump : in STD_LOGIC;
+        pcsrc : in STD_LOGIC;
+        en : in STD_LOGIC;
+        jump_address : in STD_LOGIC_VECTOR (31 downto 0);
+        branch_address : in STD_LOGIC_VECTOR (31 downto 0);
+        instruction : out STD_LOGIC_VECTOR (31 downto 0);
+        next_instruction : out STD_LOGIC_VECTOR (31 downto 0));
+end component;
 
+
+signal inc_en : STD_LOGIC;
+
+begin
+mpg1: MPG port map(inc_en, btn(0), clk);
 
 end Behavioral;
