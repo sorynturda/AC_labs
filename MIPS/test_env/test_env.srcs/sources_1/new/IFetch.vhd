@@ -9,10 +9,11 @@ entity IFetch is
         jump : in STD_LOGIC;
         pcsrc : in STD_LOGIC;
         en : in STD_LOGIC;
+        rst : in STD_LOGIC;
         jump_address : in STD_LOGIC_VECTOR (31 downto 0);
         branch_address : in STD_LOGIC_VECTOR (31 downto 0);
         instruction : out STD_LOGIC_VECTOR (31 downto 0);
-        next_instruction : out STD_LOGIC_VECTOR (31 downto 0));
+        pc_plus4 : out STD_LOGIC_VECTOR (31 downto 0));
 end IFetch;
 
 architecture Behavioral of IFetch is
@@ -26,11 +27,14 @@ end component;
 signal mux1 : STD_LOGIC_VECTOR(31 downto 0);
 signal mux2 : STD_LOGIC_VECTOR(31 downto 0);
 signal pc : STD_LOGIC_VECTOR(31 downto 0);
-signal increment : STD_LOGIC;
 
 type rom is array(0 to 4) of STD_LOGIC_VECTOR(31 downto 0);
 
 signal mem : rom := (
+ -- B"000000_00000_00000_00000_00000_000000",
+    B"000000_00010_00001_00000_00000_000001",
+    B"000000_00010_00001_00000_00000_001001",
+    
     others => X"00000000"
 );
 
@@ -38,12 +42,17 @@ signal mem : rom := (
 begin
 
 instruction <= mem(conv_integer(pc(4 downto 0)));
-next_instruction <= mem(conv_integer(pc(4 downto 0) + '1'));
+pc_plus4 <= pc + '1';
 
-    counter : process(clk)
+counter : process(clk)
     begin
-        if rising_edge(clk) and increment = '1' then
-            pc <= pc + '1';
+    
+        if rst = '1' then
+            pc <= X"00000000";
+        else
+            if rising_edge(en) then
+                pc <= pc + '1';
+            end if;
         end if;
     end process counter;
 
