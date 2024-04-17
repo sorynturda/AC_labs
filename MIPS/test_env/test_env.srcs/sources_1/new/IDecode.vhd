@@ -25,7 +25,7 @@ signal RF : reg_array := (
 signal write_addr : STD_LOGIC_VECTOR(4 downto 0);
 
 begin
-
+   
     process(clk)
     begin
         if rising_edge(clk) then
@@ -35,6 +35,7 @@ begin
         end if;
     end process;
 
+write_addr <= instruction(15 downto 11) when reg_dst = '1' else instruction(20 downto 16);
 rd1 <= RF(conv_integer(instruction(25 downto 21)));
 rd2 <= RF(conv_integer(instruction(20 downto 16)));
 func <= instruction(5 downto 0);
