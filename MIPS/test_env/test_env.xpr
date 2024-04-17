@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="/home/sorin/Desktop/AC_labs/MIPS/test_env/test_env.xpr">
+<Project Version="7" Minor="17" Path="/home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="bec5576fb4c54853802b0ee1cc854f82"/>
@@ -71,6 +71,13 @@
       </File>
       <File Path="$PSRCDIR/sources_1/new/test_env.vhd">
         <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/IDecode.vhd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
