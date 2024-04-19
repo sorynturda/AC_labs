@@ -3,7 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity UControl is
-    Port ( instruction : in STD_LOGIC_VECTOR (31 downto 26);
+    Port ( instruction : in STD_LOGIC_VECTOR (5 downto 0);
            reg_dst : out STD_LOGIC;
            ext_op : out STD_LOGIC;
            alu_src : out STD_LOGIC;
@@ -28,7 +28,15 @@ begin
             when "000000" => -- R type
                 reg_dst <= '1'; reg_write <= '1';
                 alu_op <= "01";
-            when ""
+            when "000100" => -- beg
+                ext_op <= '0'; branch <= '1';
+                alu_op <= "01"; -- add
+            when "111111" => -- j
+                jump <= '1';
+            when "100000" => -- addi
+                ext_op <= '1'; reg_dst <= '1';
+                alu_src <= '1'; reg_write <= '1';
+                alu_op <= "10";                
         end case;
     end process;
 
