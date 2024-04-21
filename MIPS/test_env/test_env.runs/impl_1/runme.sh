@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/sorin/Desktop/AC_labs/MIPS/test_env/test_env.runs/impl_1'
+HD_PWD='/home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -37,7 +37,7 @@ EAStep()
 }
 
 # pre-commands:
-/bin/touch .init_design.begin.rst
+/bin/touch .write_bitstream.begin.rst
 EAStep vivado -log test_env.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source test_env.tcl -notrace
 
 

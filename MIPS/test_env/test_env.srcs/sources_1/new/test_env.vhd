@@ -66,17 +66,42 @@ component IDecode is
            rd2 : out STD_LOGIC_VECTOR (31 downto 0);
            ext_imm : out STD_LOGIC_VECTOR (31 downto 0);
            func : out STD_LOGIC_VECTOR (5 downto 0);
-           sa : out STD_LOGIC_VECTOR (5 downto 0));
+           sa : out STD_LOGIC_VECTOR (4 downto 0));
 end component;
 
-signal en, rstIF, jump, pcsrc : STD_LOGIC;
+component Execution is
+    Port ( rd1 : in STD_LOGIC_VECTOR (31 downto 0);
+           alu_src : in STD_LOGIC;
+           rd2 : in STD_LOGIC_VECTOR (31 downto 0);
+           ext_imm : in STD_LOGIC_VECTOR (31 downto 0);
+           sa : in STD_LOGIC_VECTOR (4 downto 0);
+           func : in STD_LOGIC_VECTOR (5 downto 0);
+           alu_op : in STD_LOGIC_VECTOR (1 downto 0);
+           pc_plus4 : in STD_LOGIC_VECTOR (31 downto 0);
+           zero : out STD_LOGIC;
+           alu_res : out STD_LOGIC_VECTOR (31 downto 0);
+           branch_address : out STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+component Memory is
+    Port ( mem_write : in STD_LOGIC;
+           alu_res_in : in STD_LOGIC_VECTOR (31 downto 0);
+           rd2 : in STD_LOGIC_VECTOR (31 downto 0);
+           clk : in STD_LOGIC;
+           en : in STD_LOGIC;
+           mem_data : out STD_LOGIC_VECTOR (31 downto 0);
+           alu_res_out : out STD_LOGIC_VECTOR (31 downto 0));
+end component;
+
+signal en, rstIF, jump, pcsrc, zero : STD_LOGIC;
 signal reg_write, reg_dst, ext_op, alu_src, branch, mem_write, mem_to_reg: STD_LOGIC;
 signal alu_op : STD_LOGIC_VECTOR (1 downto 0);
 signal digits, instruction, pc_plus4, jump_address, branch_address :  STD_LOGIC_VECTOR (31 downto 0);
 
+signal alu_res_in, alu_res_out, mem_data : STD_LOGIC_VECTOR (31 downto 0);
 signal rd1, rd2, ext_imm, wd : STD_LOGIC_VECTOR (31 downto 0);
-signal func, sa : STD_LOGIC_VECTOR (5 downto 0);
-
+signal func : STD_LOGIC_VECTOR (5 downto 0);
+signal sa : STD_LOGIC_VECTOR (4 downto 0);
 
 begin
 
@@ -87,9 +112,11 @@ ifetch_map: IFetch port map(clk, jump, pcsrc, en, rstIF, jump_address, branch_ad
 portssd: SSD port map(clk, digits, an, cat);
 ucontr: UControl port map(instruction(31 downto 26), reg_dst, ext_op, alu_src, branch, jump, alu_op, mem_write, mem_to_reg, reg_write);
 idecod: IDecode port map(en, reg_write, reg_dst, wd, en, ext_op, instruction (26 downto 0), rd1, rd2, ext_imm, func, sa);
+memm: Memory port map (mem_write, alu_res_in, rd2, clk, en, mem_data, alu_res_out);
+exx: Execution port map (rd1, alu_src, rd2, ext_imm, sa, func, alu_op, pc_plus4, zero, alu_res_in, branch_address);
 
 digits <= instruction when sw(7) = '1' else pc_plus4;
-
+wd <= alu_res_in when mem_to_reg ='1' else mem_data;
 led(0) <= en;
 led(5) <= btn(0);
 led(1) <= sw(1);

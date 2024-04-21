@@ -14,7 +14,7 @@ entity IDecode is
            rd2 : out STD_LOGIC_VECTOR (31 downto 0);
            ext_imm : out STD_LOGIC_VECTOR (31 downto 0);
            func : out STD_LOGIC_VECTOR (5 downto 0);
-           sa : out STD_LOGIC_VECTOR (5 downto 0));
+           sa : out STD_LOGIC_VECTOR (4 downto 0));
 end IDecode;
 
 architecture Behavioral of IDecode is

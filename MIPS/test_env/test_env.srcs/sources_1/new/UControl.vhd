@@ -36,7 +36,8 @@ begin
             when "100000" => -- addi
                 ext_op <= '1'; reg_dst <= '1';
                 alu_src <= '1'; reg_write <= '1';
-                alu_op <= "10";                
+                alu_op <= "10";
+            when others => alu_op <= "11";                
         end case;
     end process;
 
