@@ -61,7 +61,7 @@ component IDecode is
            wd : in STD_LOGIC_VECTOR (31 downto 0);
            en : in STD_LOGIC;
            ext_op : in STD_LOGIC;
-           instruction : in STD_LOGIC_VECTOR (26 downto 0);
+           instruction : in STD_LOGIC_VECTOR (25 downto 0);
            rd1 : out STD_LOGIC_VECTOR (31 downto 0);
            rd2 : out STD_LOGIC_VECTOR (31 downto 0);
            ext_imm : out STD_LOGIC_VECTOR (31 downto 0);
@@ -107,17 +107,29 @@ begin
 
 
 mpg1: MPG port map(en, btn(0), clk);
-mpg2: MPG port map(rstIF, btn(1), clk);
 ifetch_map: IFetch port map(clk, jump, pcsrc, en, rstIF, jump_address, branch_address, instruction, pc_plus4);
 portssd: SSD port map(clk, digits, an, cat);
 ucontr: UControl port map(instruction(31 downto 26), reg_dst, ext_op, alu_src, branch, jump, alu_op, mem_write, mem_to_reg, reg_write);
-idecod: IDecode port map(en, reg_write, reg_dst, wd, en, ext_op, instruction (26 downto 0), rd1, rd2, ext_imm, func, sa);
+idecod: IDecode port map(en, reg_write, reg_dst, wd, en, ext_op, instruction (25 downto 0), rd1, rd2, ext_imm, func, sa);
 memm: Memory port map (mem_write, alu_res_in, rd2, clk, en, mem_data, alu_res_out);
-exx: Execution port map (rd1, alu_src, rd2, ext_imm, sa, func, alu_op, pc_plus4, zero, alu_res_in, branch_address);
+exx: Execution port map (rd1, alu_src, rd2, ext_imm, sa, func, alu_op, pc_plus4, zero, alu_res_out, branch_address);
 
-digits <= instruction when sw(7) = '1' else pc_plus4;
+
+pcsrc <= zero and branch;
+
+jump_address <= pc_plus4 (31 downto 28) & instruction (25 downto 0) & "00";
+
+with sw(7 downto 5) select
+        digits <=  instruction when "000", 
+                   pc_plus4 when "001",
+                   rd1 when "010",
+                   rd2 when "011",
+                   ext_imm when "100",
+                   alu_res_out when "101",
+                   alu_res_in when "110",
+                   wd when "111",
+                   (others => 'X') when others; 
+
 wd <= alu_res_in when mem_to_reg ='1' else mem_data;
-led(0) <= en;
-led(5) <= btn(0);
-led(1) <= sw(1);
+led(9 downto 0) <= alu_op & reg_dst & ext_op & alu_src & branch & jump & mem_write & mem_to_reg & reg_write;
 end Behavioral;

@@ -9,7 +9,7 @@ entity IDecode is
            wd : in STD_LOGIC_VECTOR (31 downto 0);
            en : in STD_LOGIC;
            ext_op : in STD_LOGIC;
-           instruction : in STD_LOGIC_VECTOR (26 downto 0);
+           instruction : in STD_LOGIC_VECTOR (25 downto 0);
            rd1 : out STD_LOGIC_VECTOR (31 downto 0);
            rd2 : out STD_LOGIC_VECTOR (31 downto 0);
            ext_imm : out STD_LOGIC_VECTOR (31 downto 0);

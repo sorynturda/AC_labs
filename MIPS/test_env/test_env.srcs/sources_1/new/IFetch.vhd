@@ -28,7 +28,7 @@ signal mux1 : STD_LOGIC_VECTOR(31 downto 0);
 signal mux2 : STD_LOGIC_VECTOR(31 downto 0);
 signal pc : STD_LOGIC_VECTOR(31 downto 0);
 
-type rom is array(0 to 4) of STD_LOGIC_VECTOR(31 downto 0);
+type rom is array(0 to 31) of STD_LOGIC_VECTOR(31 downto 0);
 
 signal mem : rom := (
  -- B"000000_00000_00000_00000_00000_000000",

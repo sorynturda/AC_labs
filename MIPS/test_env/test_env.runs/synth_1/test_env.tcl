@@ -19,10 +19,10 @@ read_vhdl -library xil_defaultlib {
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/Memory.vhd
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/Execution.vhd
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/UControl.vhd
-  /home/sorin/Desktop/labs/AC_labs/SSD.vhd
   /home/sorin/Desktop/labs/AC_labs/MPG.vhd
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/IFetch.vhd
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/IDecode.vhd
+  /home/sorin/Desktop/labs/AC_labs/SSD.vhd
   /home/sorin/Desktop/labs/AC_labs/MIPS/test_env/test_env.srcs/sources_1/new/test_env.vhd
 }
 foreach dcp [get_files -quiet -all *.dcp] {

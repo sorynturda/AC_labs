@@ -36,11 +36,15 @@ begin
                 when "000100" => alu_ctrl <= "010"; -- xor
                 when "000000" => alu_ctrl <= "100"; -- sll
                 when "001000" => alu_ctrl <= "110"; -- slt
-                when others => alu_ctrl <= "000";
+                when "000011" => alu_ctrl <= "111"; -- srl
+                when "010000" => alu_Ctrl <= "011"; -- or
+                when "100000" => alu_Ctrl <= "101"; -- and 
+                when others => alu_ctrl <= "XXX";
             end case;
-        when "01" => alu_ctrl <= "001"; -- beg
-        when "10" => alu_ctrl <= "000"; -- addi
-        when others => alu_ctrl <= "000";
+        when "01" => alu_ctrl <= "001"; -- sub
+        when "10" => alu_ctrl <= "000"; -- add
+        when "11" => alu_ctrl <= "011"; -- or
+        when others => alu_ctrl <= "XXX";
     end case;
 end process;
 
@@ -55,12 +59,15 @@ begin
             else C <= X"00000000";
             end if; 
         when "010" => C <= rd1 xor rd2;
+        when "101" => C <= rd1 and rd2;
+        when "011" => C <= rd1 or rd2;
+        when "111" => C <= to_stdlogicvector(to_bitvector(rd2) sra conv_integer(sa));
         when others => C <= rd1;
     end case;
 end process;
 
 alu_res <= C;
-zero <= '1' when C = X"00000000" else '0';
+zero <= '1' when C = 0 else '0';
 branch_address <= pc_plus4 +  (ext_imm (29 downto 0) & "00");
 
 end Behavioral;

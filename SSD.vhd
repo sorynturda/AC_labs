@@ -1,12 +1,3 @@
-----------------------------------------------------------------------------------
--- Company: Technical University of Cluj-Napoca 
--- Engineer: Cristian Vancea
--- 
--- Module Name: SSD - Behavioral
--- Description: 
---      Display on SSD Unit
-----------------------------------------------------------------------------------
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.STD_LOGIC_UNSIGNED.ALL;
