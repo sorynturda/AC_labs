@@ -14,7 +14,11 @@ entity Execution is
            pc_plus4 : in STD_LOGIC_VECTOR (31 downto 0);
            zero : out STD_LOGIC;
            alu_res : out STD_LOGIC_VECTOR (31 downto 0);
-           branch_address : out STD_LOGIC_VECTOR (31 downto 0));
+           branch_address : out STD_LOGIC_VECTOR (31 downto 0);
+           rd : in STD_LOGIC_VECTOR(4 downto 0);
+           rt : in STD_LOGIC_VECTOR(4 downto 0);
+           reg_dst : in STD_LOGIC;
+           rwa : out STD_LOGIC_VECTOR(4 downto 0));
 end Execution;
 
 architecture Behavioral of Execution is
@@ -65,10 +69,10 @@ begin
         when "101" => C <= a and b;
         when "011" => C <= a or b;
         when "111" => C <= to_stdlogicvector(to_bitvector(b) sra conv_integer(sa));
-        when others => C <= a;
+        when others => C <= rd1;
     end case;
 end process;
-
+rwa <= rt when reg_dst = '0' else rd;
 alu_res <= C;
 zero <= '1' when C = 0 else '0';
 branch_address <= pc_plus4 +  (ext_imm (29 downto 0) & "00");
