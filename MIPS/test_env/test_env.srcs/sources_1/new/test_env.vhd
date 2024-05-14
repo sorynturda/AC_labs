@@ -110,7 +110,7 @@ signal func : STD_LOGIC_VECTOR (5 downto 0);
 signal sa, rt, rd, wa, rwa : STD_LOGIC_VECTOR (4 downto 0);
 
 --pipeline
-signal pc_plus4_if_id, instruction_if_id, pc_plus4_id_ex, mem_data_mem_wb, alu_res_out_mem_wb : STD_LOGIC_VECTOR(31 downto 0);
+signal pc_plus4_if_id, instruction_if_id, pc_plus4_id_ex, mem_data_mem_wb, alu_res_out_mem_wb, alu_res_out_ex_mem : STD_LOGIC_VECTOR(31 downto 0);
 signal rd1_id_ex, rd2_id_ex, ext_imm_id_ex, branch_address_ex_mem : STD_LOGIC_VECTOR(31 downto 0);
 signal alu_res_in_ex_mem, rd2_ex_mem : STD_LOGIC_VECTOR(31 downto 0);
 signal sa_id_ex, rd_id_ex, rt_id_ex, rd_ex_mem, rd_mem_wb : STD_LOGIC_VECTOR(4 downto 0);
@@ -197,6 +197,5 @@ with sw(7 downto 5) select
                    wd when "111",
                    (others => 'X') when others; 
 
-wd <= alu_res_in when mem_to_reg ='1' else mem_data;
 led(9 downto 0) <= alu_op & reg_dst & ext_op & alu_src & branch & jump & mem_write & mem_to_reg & reg_write;
 end Behavioral;
