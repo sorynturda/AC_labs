@@ -20,7 +20,7 @@ end Execution;
 architecture Behavioral of Execution is
 
 signal alu_ctrl : STD_LOGIC_VECTOR (2 downto 0);
-signal c : STD_LOGIC_VECTOR (31 downto 0);
+signal a, b, c : STD_LOGIC_VECTOR (31 downto 0);
 
 begin
 
@@ -48,21 +48,24 @@ begin
     end case;
 end process;
 
-process(rd1, rd2, alu_ctrl, sa)
+a <= rd1;
+b <= ext_imm when alu_src = '1' else rd2;
+
+process(a, b, alu_ctrl, sa)
 begin
     case alu_ctrl is 
-        when "000" => C <= rd1 + rd2;
-        when "001" => C <= rd1 - rd2;
-        when "100" => C <= to_stdlogicvector(to_bitvector(rd2) sll conv_integer(sa));
+        when "000" => C <= a + b;
+        when "001" => C <= a - b;
+        when "100" => C <= to_stdlogicvector(to_bitvector(a) sll conv_integer(sa));
         when "110" =>
-            if signed(rd1) < signed(rd2) then C <= X"00000001";
+            if signed(a) < signed(b) then C <= X"00000001";
             else C <= X"00000000";
             end if; 
-        when "010" => C <= rd1 xor rd2;
-        when "101" => C <= rd1 and rd2;
-        when "011" => C <= rd1 or rd2;
-        when "111" => C <= to_stdlogicvector(to_bitvector(rd2) sra conv_integer(sa));
-        when others => C <= rd1;
+        when "010" => C <= a xor b;
+        when "101" => C <= a and b;
+        when "011" => C <= a or b;
+        when "111" => C <= to_stdlogicvector(to_bitvector(b) sra conv_integer(sa));
+        when others => C <= a;
     end case;
 end process;
 
